@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Simple Next.js Authentication using Next-Auth
 
-## Getting Started
+## 📋 Prerequisites
 
-First, run the development server:
+Before you begin, ensure you have the following installed:
+
+- Node.js (version 12 or later)
+- A package manager like npm or yarn
+- Git (for version control)
+
+## 🌟 Introduction
+
+This project demonstrates a simple authentication setup in a Next.js 14.0.2 application using "next-auth" version 4.24.5. It showcases how to configure authentication with GitHub and custom credentials.
+
+## 🔧 Setup
+
+1. Clone the Repository:
+
+```bash
+git clone git@github.com:MathiasCK/next-auth-demo.git
+cd next-auth-demo
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+# or
+yarn
+```
+
+3. Environment Variables:
+
+To enable GitHub authentication, consult [this toturial](https://next-auth.js.org/providers/github) for guidance. Once you've obtained your GitHub credentials, create a .env.local file in the project's root directory and include your GitHub ID and Secret:
+
+```bash
+GITHUB_ID=your_github_id
+GITHUB_SECRET=your_github_secret
+```
+
+4. Run the Development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Home Page**: Accessible to all. Redirects unauthenticated users with a message.
+- **Server Page**: Requires authentication. Redirects to the sign-in page if not authenticated.
+- **Client Page**: Uses client-side authentication with useSession.
+- **Dashboard**: Protected by middleware, only accessible when authenticated.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 📁 Folder Structure
 
-## Learn More
+`/src/app/api/auth/[...nextauth]`: Contains `route.ts` and `options.ts` for authentication configuration.
 
-To learn more about Next.js, take a look at the following resources:
+- `route.ts`: Handles authentication routes.
+- `options.ts`: Configures providers for GitHub and Credentials authentication.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`/src/`: Includes middleware for route protection and pages.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- `middleware.ts`: Protects specific routes like /dashboard.
 
-## Deploy on Vercel
+## License 📄
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Distributed under the MIT License. See LICENSE for more information.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgements 🎉
+
+- [Next.js](https://nextjs.org/docs) - A big shoutout to the Next.js framework for providing a robust and efficient foundation for building modern web applications. Its server-side rendering and static generation capabilities greatly enhanced the performance and scalability of the project.
+- [NextAuth.js](https://next-auth.js.org/getting-started/introduction) - Immense gratitude to NextAuth.js for its seamless authentication solution. Its simplicity and flexibility in integrating with different providers, including GitHub, made setting up secure authentication in the Next.js application a breeze.
+
+Made with ❤️ and JavaScript.
